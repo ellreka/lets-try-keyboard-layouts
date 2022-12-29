@@ -23,7 +23,7 @@ export const TextArea: FC<Props> = () => {
         onKeyDown={handleKeyDown}
         onKeyUp={handleKeyUp}
         onChange={handleChange}
-        className="w-full h-[200px] textarea textarea-bordered"
+        className="w-full h-[200px] textarea textarea-bordered text-lg focus:outline-info-content"
       />
     </div>
   )

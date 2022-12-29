@@ -6,7 +6,10 @@ import keyboard from '~/keyboard.json'
 export const useKeyboard = () => {
   const pressedKey = useRecoilValue(pressedKeyState)
   const tryKeyboard = useRecoilValue(tryKeyboardState)
-  const layout = keyboard[tryKeyboard].layout
+  const layout =
+    tryKeyboard === 'custom'
+      ? keyboard['qwerty'].layout
+      : keyboard[tryKeyboard].layout
   return {
     pressedKeyPosition: pressedKey[1],
     layout

@@ -1,8 +1,16 @@
 import { useRecoilState } from 'recoil'
 import { myKeyboardState, tryKeyboardState } from '~/atoms/selectKeyboardQuery'
 import type { KeyboardKeys } from '~/type'
+import keyboard from '~/keyboard.json'
+
+const keyboardList = Object.entries(keyboard).map(([key, value]) => ({
+  key,
+  name: value.name
+}))
 
 export const useSelectKeyboard = () => {
+  const myKeyboardList = keyboardList
+  const tryKeyboardList = [...keyboardList, { key: 'custom', name: 'Custom' }]
   const [myKeyboard, setMyKeyboard] = useRecoilState(myKeyboardState)
   const [tryKeyboard, setTryKeyboard] = useRecoilState(tryKeyboardState)
 
@@ -20,6 +28,8 @@ export const useSelectKeyboard = () => {
   }
 
   return {
+    myKeyboardList,
+    tryKeyboardList,
     myKeyboard,
     tryKeyboard,
     handleSelectMyKeyboard,

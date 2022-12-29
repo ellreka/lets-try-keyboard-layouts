@@ -7,7 +7,6 @@ import {
   Scripts,
   ScrollRestoration
 } from '@remix-run/react'
-import React from 'react'
 import { RecoilRoot } from 'recoil'
 import styles from './styles/app.css'
 

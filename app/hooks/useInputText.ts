@@ -4,12 +4,15 @@ import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
 import { pressedKeyState } from '~/atoms/inputTextQuery'
 import { myKeyboardState, tryKeyboardState } from '~/atoms/selectKeyboardQuery'
 import { convertKey } from '~/utils/convertKey'
+import keyboard from '~/keyboard.json'
+import { customKeyboardState } from '~/atoms/keyboardQuery'
 
 export const useInputText = () => {
   const [pressedKey, setPressedKey] = useRecoilState(pressedKeyState)
   const resetPressedKey = useResetRecoilState(pressedKeyState)
   const myKeyboard = useRecoilValue(myKeyboardState)
   const tryKeyboard = useRecoilValue(tryKeyboardState)
+  const customKeyboard = useRecoilValue(customKeyboardState)
   const [readonly, setReadonly] = useState(true)
   const [inputText, setInputText] = useState('')
 
@@ -34,8 +37,11 @@ export const useInputText = () => {
           setReadonly(true)
           const [convertedKey, position] = convertKey(
             key,
-            myKeyboard,
-            tryKeyboard
+            keyboard[myKeyboard].layout,
+            tryKeyboard === 'custom' && customKeyboard != null
+              ? customKeyboard
+              : // @ts-ignore
+                keyboard[tryKeyboard].layout
           )
           console.log({ convertedKey, key })
           setPressedKey([convertedKey, position])
@@ -50,7 +56,7 @@ export const useInputText = () => {
         setReadonly(true)
       }
     },
-    [myKeyboard, tryKeyboard]
+    [myKeyboard, tryKeyboard, customKeyboard]
   )
 
   const handleKeyUp = useCallback(() => {

@@ -12,7 +12,7 @@ export const myKeyboardState = atom<KeyboardKeys>({
   // effects_UNSTABLE: [persistAtom]
 })
 
-export const tryKeyboardState = atom<KeyboardKeys>({
+export const tryKeyboardState = atom<KeyboardKeys | 'custom'>({
   key: 'tryKeyboardState',
   default: 'dvorak'
   // effects_UNSTABLE: [persistAtom]

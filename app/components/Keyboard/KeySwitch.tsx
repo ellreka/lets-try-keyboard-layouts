@@ -5,16 +5,22 @@ interface Props {
   keys: string[]
   isPressed?: boolean
   isHomePosition?: boolean
+  isEditing?: boolean
 }
 
 export const KeySwitch = memo<Props>(
-  ({ keys, isPressed = false, isHomePosition = false }) => {
+  ({ keys, isPressed = false, isHomePosition = false, isEditing = false }) => {
     const [layer1, layer2] = keys
     return (
       <div
         className={clsx(
-          'w-[50px] h-[50px] relative border-2 rounded-md border-black flex flex-col gap-1 items-center justify-center shadow-black',
-          isPressed ? 'bg-black/30 text-white' : 'bg-white'
+          'w-[50px] h-[50px] relative border rounded-md border-base-content flex flex-col gap-1 items-center justify-center',
+          isPressed
+            ? 'bg-black/30 text-white'
+            : 'bg-white  text-base-content where:shadow-[inset_0_0_0_5px] where:shadow-gray-200',
+          isEditing
+            ? 'border-2 border-dotted border-info bg-info/10 shadow-none'
+            : ''
         )}
       >
         <div className="text-sm leading-none">{layer2}</div>

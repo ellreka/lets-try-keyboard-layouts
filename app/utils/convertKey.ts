@@ -1,10 +1,9 @@
-import type { KeyboardKeys } from '~/type'
-import keyboard from '../keyboard.json'
+import type { KeyboardLayout } from '~/type'
 
 export const convertKey = (
   key: string,
-  myKeyboard: KeyboardKeys,
-  tryKeyboard: KeyboardKeys
+  myKeyboard: KeyboardLayout,
+  tryKeyboard: KeyboardLayout
 ): [
   key: string,
   position: {
@@ -13,8 +12,8 @@ export const convertKey = (
     layer: number
   }
 ] => {
-  const myKeyboardLayout = keyboard[myKeyboard].layout
-  const tryKeyboardLayout = keyboard[tryKeyboard].layout
+  const myKeyboardLayout = myKeyboard
+  const tryKeyboardLayout = tryKeyboard
 
   const toLowerKey = key.toLowerCase()
   let rowIndex = null
