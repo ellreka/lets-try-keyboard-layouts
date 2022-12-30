@@ -1,6 +1,7 @@
 import type { LoaderFunction } from '@remix-run/node'
 import { json } from '@remix-run/node'
-import chromium from '@shortjared/chrome-aws-lambda'
+import chromium from 'chrome-aws-lambda'
+import playwright from 'playwright-core'
 
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -19,18 +20,22 @@ export const loader: LoaderFunction = async ({
   let screenshot = null
 
   try {
-    browser = await chromium.puppeteer.launch({
+    browser = await playwright.chromium.launch({
       args: isDev ? [] : chromium.args,
       channel: isDev ? 'chrome' : undefined,
       executablePath: isDev ? undefined : await chromium.executablePath,
-      headless: isDev ? true : chromium.headless,
-      defaultViewport: { width: 1200, height: 630 }
+      headless: isDev ? true : chromium.headless
     })
 
     const page = await browser.newPage()
 
+    page.setViewportSize({
+      width: 1200,
+      height: 630
+    })
+
     const templateUrl = request.url.replace(`.png`, '')
-    await page.goto(templateUrl, { waitUntil: 'networkidle0' })
+    await page.goto(templateUrl)
 
     screenshot = await page.screenshot({ type: 'png' })
   } catch (error: unknown) {
