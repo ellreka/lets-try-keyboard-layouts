@@ -12,6 +12,7 @@ specifiers:
   '@types/react-dom': ^17.0.18
   '@vercel/node': ^2.6.2
   autoprefixer: ^10.4.13
+  chrome-aws-lambda: ^10.1.0
   clsx: ^1.2.1
   daisyui: ^2.46.0
   eslint: ^8.27.0
@@ -19,6 +20,7 @@ specifiers:
   postcss: ^8.4.20
   prettier: ^2.8.1
   puppeteer: ^19.4.1
+  puppeteer-core: ^19.4.1
   react: ^18.2.0
   react-dom: ^18.2.0
   recoil: ^0.7.6
@@ -42,6 +44,7 @@ devDependencies:
   '@types/react': 17.0.52
   '@types/react-dom': 17.0.18
   autoprefixer: 10.4.13_postcss@8.4.20
+  chrome-aws-lambda: 10.1.0_puppeteer-core@19.4.1
   clsx: 1.2.1
   daisyui: 2.46.0_r4gnkvssmvyxmi2wmat5xbx36a
   eslint: 8.30.0
@@ -49,6 +52,7 @@ devDependencies:
   postcss: 8.4.20
   prettier: 2.8.1
   puppeteer: 19.4.1
+  puppeteer-core: 19.4.1
   recoil: 0.7.6_biqbaboplfbrettd7655fr4n2y
   recoil-persist: 4.2.0_recoil@0.7.6
   tailwindcss: 3.2.4_postcss@8.4.20
@@ -3023,6 +3027,16 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
+  /chrome-aws-lambda/10.1.0_puppeteer-core@19.4.1:
+    resolution: {integrity: sha512-NZQVf+J4kqG4sVhRm3WNmOfzY0OtTSm+S8rg77pwePa9RCYHzhnzRs8YvNI6L9tALIW6RpmefWiPURt3vURXcw==}
+    engines: {node: '>= 10.16'}
+    peerDependencies:
+      puppeteer-core: ^10.1.0
+    dependencies:
+      lambdafs: 2.1.1
+      puppeteer-core: 19.4.1
+    dev: true
+
   /class-utils/0.3.6:
     resolution: {integrity: sha512-qOhPa/Fj7s6TY8H8esGu5QNpMMQxz79h+urzrNYN6mn+9BnxlDGf5QZ+XeCDsxSjPqsSR56XOZOJmpeurnLMeg==}
     engines: {node: '>=0.10.0'}
@@ -5677,6 +5691,14 @@ packages:
     resolution: {integrity: sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==}
     engines: {node: '>=6'}
     dev: true
+
+  /lambdafs/2.1.1:
+    resolution: {integrity: sha512-x5k8JcoJWkWLvCVBzrl4pzvkEHSgSBqFjg3Dpsc4AcTMq7oUMym4cL/gRTZ6VM4mUMY+M0dIbQ+V1c1tsqqanQ==}
+    engines: {node: '>= 10.16'}
+    hasBin: true
+    dev: true
+    bundledDependencies:
+      - tar-fs
 
   /language-subtag-registry/0.3.22:
     resolution: {integrity: sha512-tN0MCzyWnoz/4nHS6uxdlFWoUZT7ABptwKPQ52Ea7URk6vll88bWBVhodtnlfEuCcKWNGoc+uGbw1cwa9IKh/w==}

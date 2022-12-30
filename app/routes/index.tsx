@@ -8,20 +8,26 @@ import { useCustomizing } from '~/hooks/useCustomizing'
 import { useSelectKeyboard } from '~/hooks/useSelectKeyboard'
 
 export const meta: MetaFunction<typeof loader> = ({ data, params }) => {
-  console.log(data, params)
+  const { imageUrl } = data
   return {
-    title: data.title ?? 'no title',
-    description: 'This becomes the nice preview on search results.',
-    image: ''
+    'og:url': '',
+    'og:title': `aaa`,
+    'og:description': 'description',
+    'og:image': imageUrl,
+    'og:site_name': '',
+    'twitter:card': imageUrl ? 'summary_large_image' : 'summary',
+    'twitter:creator': '@ellreka',
+    'twitter:site': '@ellreka'
   }
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url)
-  const title = url.searchParams.get('title')
-  console.log(url)
+  const author = url.searchParams.get('author')
+  const imageUrl = `${url.origin}/ogimages/${author}.png`
   return {
-    title
+    author,
+    imageUrl
   }
 }
 
