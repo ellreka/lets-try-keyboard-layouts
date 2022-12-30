@@ -1,3 +1,5 @@
+'use client'
+
 import { useRecoilState, useRecoilValue } from 'recoil'
 import {
   customKeyboardState,

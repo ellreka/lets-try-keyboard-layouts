@@ -1,33 +1,13 @@
-import { useLoaderData } from '@remix-run/react'
-import type { MetaFunction, LoaderFunction } from '@remix-run/node'
-import { useState } from 'react'
+'use client'
+
+// import { useState } from 'react'
 import { Keyboard } from '~/components/Keyboard/Keyboard'
 import { ShareModal } from '~/components/Modal/ShareModal'
 import { TextArea } from '~/components/TextArea/TextArea'
 import { useCustomizing } from '~/hooks/useCustomizing'
 import { useSelectKeyboard } from '~/hooks/useSelectKeyboard'
 
-export const meta: MetaFunction<typeof loader> = ({ data, params }) => {
-  console.log(data, params)
-  return {
-    title: data.title ?? 'no title',
-    description: 'This becomes the nice preview on search results.',
-    image: ''
-  }
-}
-
-export const loader: LoaderFunction = async ({ request }) => {
-  const url = new URL(request.url)
-  const title = url.searchParams.get('title')
-  console.log(url)
-  return {
-    title
-  }
-}
-
-export default function Index() {
-  const data = useLoaderData()
-  console.log(data)
+const Index = () => {
   const { isCustomizing, handleCreateOriginalKeyboard } = useCustomizing()
   const {
     myKeyboardList,
@@ -38,13 +18,11 @@ export default function Index() {
     handleSelectTryKeyboard
   } = useSelectKeyboard()
 
-  const [isOpenModal, setIsOpenModal] = useState(false)
-
   return (
     <div className="bg-base h-screen flex flex-col">
       <header className="w-full flex items-center justify-center py-10">
         <h1 className="text-3xl font-bold text-black">
-          Let's Try Keyboard Layouts!
+          Let&apos;s Try Keyboard Layouts!
         </h1>
       </header>
       <div className="max-w-3xl mx-auto bg-neutral h-full p-10">
@@ -90,7 +68,7 @@ export default function Index() {
               <button
                 className="btn btn-primary gap-2"
                 onClick={() => {
-                  setIsOpenModal(true)
+                  // setIsOpenModal(true)
                 }}
               >
                 Share
@@ -120,13 +98,15 @@ export default function Index() {
           )}
         </div>
       </div>
-      <ShareModal
+      {/* <ShareModal
         open={isOpenModal}
         onClose={() => {
           console.log('cose')
           setIsOpenModal(false)
         }}
-      />
+      /> */}
     </div>
   )
 }
+
+export default Index

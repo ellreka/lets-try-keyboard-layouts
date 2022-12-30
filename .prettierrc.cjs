@@ -9,7 +9,7 @@ module.exports = {
   arrowParens: 'always',
   overrides: [
     {
-      files: './app/keyboard.jsonc',
+      files: './src/keyboard.json',
       options: {
         printWidth: 300
       }
