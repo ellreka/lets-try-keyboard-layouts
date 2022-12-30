@@ -3,7 +3,7 @@ import { json } from '@remix-run/node'
 import chromium from 'chrome-aws-lambda'
 import puppeteer from 'puppeteer-core'
 
-const isDev = !process.env.AWS_REGION
+const isDev = false
 
 export const loader: LoaderFunction = async ({
   request
@@ -20,6 +20,7 @@ export const loader: LoaderFunction = async ({
   let screenshot = null
 
   try {
+    console.log({ isDev })
     browser = await puppeteer.launch({
       args: isDev ? [] : chromium.args,
       channel: isDev ? 'chrome' : undefined,
