@@ -1,0 +1,12 @@
+name = "lets-try-keyboard-layouts"
+main = "worker.ts"
+compatibility_date = "2022-12-30"
+
+account_id = ""
+workers_dev = true
+
+[site]
+bucket = "./public"
+
+[build]
+command = "npm run build:css && remix build"

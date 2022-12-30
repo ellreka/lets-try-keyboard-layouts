@@ -1,11 +1,12 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@cloudflare/kv-asset-handler': ^0.3.0
   '@cloudflare/puppeteer': 0.0.0-alpha.1
   '@cloudflare/workers-types': ^3.18.0
   '@mui/base': 5.0.0-alpha.112
   '@remix-run/cloudflare': ^1.9.0
-  '@remix-run/cloudflare-pages': ^1.9.0
+  '@remix-run/cloudflare-workers': ^1.9.0
   '@remix-run/dev': ^1.9.0
   '@remix-run/eslint-config': ^1.9.0
   '@remix-run/react': ^1.9.0
@@ -28,8 +29,9 @@ specifiers:
   wrangler: ^2.2.1
 
 dependencies:
+  '@cloudflare/kv-asset-handler': 0.3.0
   '@remix-run/cloudflare': 1.9.0_arfmlatn6u4eernl72rvcbrwnm
-  '@remix-run/cloudflare-pages': 1.9.0_arfmlatn6u4eernl72rvcbrwnm
+  '@remix-run/cloudflare-workers': 1.9.0_arfmlatn6u4eernl72rvcbrwnm
   '@remix-run/react': 1.9.0_sfoxds7t5ydpegc3knd667wn6m
   cross-env: 7.0.3
   react: 17.0.2
@@ -1395,6 +1397,12 @@ packages:
       mime: 3.0.0
     dev: true
 
+  /@cloudflare/kv-asset-handler/0.3.0:
+    resolution: {integrity: sha512-9CB/MKf/wdvbfkUdfrj+OkEwZ5b7rws0eogJ4293h+7b6KX5toPwym+VQKmILafNB9YiehqY0DlNrDcDhdWHSQ==}
+    dependencies:
+      mime: 3.0.0
+    dev: false
+
   /@cloudflare/puppeteer/0.0.0-alpha.1:
     resolution: {integrity: sha512-NU50aR/xA+v3r8gxvOk2eUz6XiQhbZeBwDrsiVncb0WriqNkHXWHX3Q+b0NGEvhZ1iu6xm35ETG+z76bMOk1bg==}
     dependencies:
@@ -2014,12 +2022,13 @@ packages:
     resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
     dev: true
 
-  /@remix-run/cloudflare-pages/1.9.0_arfmlatn6u4eernl72rvcbrwnm:
-    resolution: {integrity: sha512-4x7Z4sedjNfX9qBR106P5lvU6FwWxNEWRjm3uv0XFiQRoDQWnTvVhqPnt3PmmNzB09TOjC7GGyvulPZi1ih19w==}
+  /@remix-run/cloudflare-workers/1.9.0_arfmlatn6u4eernl72rvcbrwnm:
+    resolution: {integrity: sha512-KDUU5vvWxEoxOoYmeuTbHUcCuTdHPXfMSnvhvXBNETsQBJ1KH1K2v1eS1gWwtf/Jqslmx3LGq+d1SfZxweev8Q==}
     engines: {node: '>=14'}
     peerDependencies:
-      '@cloudflare/workers-types': ^3.0.0
+      '@cloudflare/workers-types': ^2.0.0 || ^3.0.0
     dependencies:
+      '@cloudflare/kv-asset-handler': 0.1.3
       '@cloudflare/workers-types': 3.18.0
       '@remix-run/cloudflare': 1.9.0_arfmlatn6u4eernl72rvcbrwnm
     transitivePeerDependencies:
@@ -6364,7 +6373,6 @@ packages:
     resolution: {integrity: sha512-jSCU7/VB1loIWBZe14aEYHU/+1UMEHoaO7qxCOVJOw9GgH72VAWppxNcjU+x9a2k3GSIBXNKxXQFqRvvZ7vr3A==}
     engines: {node: '>=10.0.0'}
     hasBin: true
-    dev: true
 
   /mimic-fn/2.1.0:
     resolution: {integrity: sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==}
