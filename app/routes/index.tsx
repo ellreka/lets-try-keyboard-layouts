@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { Keyboard } from '~/components/Keyboard/Keyboard'
 import { ShareModal } from '~/components/Modal/ShareModal'
 import { TextArea } from '~/components/TextArea/TextArea'
+import { useCustomizing } from '~/hooks/useCustomizing'
 import { useSelectKeyboard } from '~/hooks/useSelectKeyboard'
 
 export const meta: MetaFunction<typeof loader> = ({ data, params }) => {
@@ -27,7 +28,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 export default function Index() {
   const data = useLoaderData()
   console.log(data)
-  const [isEdit, setIsEdit] = useState(false)
+  const { isCustomizing, handleCreateOriginalKeyboard } = useCustomizing()
   const {
     myKeyboardList,
     tryKeyboardList,
@@ -38,16 +39,6 @@ export default function Index() {
   } = useSelectKeyboard()
 
   const [isOpenModal, setIsOpenModal] = useState(false)
-
-  const handleCreateLayout = () => {}
-
-  useEffect(() => {
-    if (tryKeyboard === 'custom') {
-      setIsEdit(true)
-    } else {
-      setIsEdit(false)
-    }
-  }, [tryKeyboard])
 
   return (
     <div className="bg-base h-screen flex flex-col">
@@ -88,13 +79,45 @@ export default function Index() {
           </div>
         </div>
         <div className="mt-10">
-          <Keyboard isEdit={isEdit} />
+          <Keyboard key={tryKeyboard} isEdit={isCustomizing} />
         </div>
         <div className="mt-10">
           <TextArea />
         </div>
         <div className="mt-5 flex items-center justify-center">
-          <button className="btn btn-primary">Create original layout</button>
+          {isCustomizing ? (
+            <div className="flex gap-5">
+              <button
+                className="btn btn-primary gap-2"
+                onClick={() => {
+                  setIsOpenModal(true)
+                }}
+              >
+                Share
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z"
+                  />
+                </svg>
+              </button>
+            </div>
+          ) : (
+            <button
+              className="btn btn-primary"
+              onClick={handleCreateOriginalKeyboard}
+            >
+              Create original layout
+            </button>
+          )}
         </div>
       </div>
       <ShareModal

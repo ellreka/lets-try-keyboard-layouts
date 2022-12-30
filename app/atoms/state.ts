@@ -27,6 +27,11 @@ export const pressedKeyState = atom<
   ]
 })
 
+export const isCustomizingState = atom<boolean>({
+  key: 'isCustomizingState',
+  default: false
+})
+
 export const customKeyboardState = atom<Array<string[] | string>[] | null>({
   key: 'customKeyboardState',
   default: null
