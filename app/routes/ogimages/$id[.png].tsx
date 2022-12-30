@@ -20,14 +20,12 @@ export const loader: LoaderFunction = async ({
   let screenshot = null
 
   try {
-    console.log({ isDev })
     browser = await chromium.puppeteer.launch({
-      args: isDev ? [] : chromium.args,
-      channel: isDev ? 'chrome' : undefined,
-      executablePath: isDev ? undefined : await chromium.executablePath,
-      headless: isDev ? true : chromium.headless,
-      defaultViewport: { width: 1200, height: 630 },
-      ignoreDefaultArgs: ['--disable-extensions']
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath: await chromium.executablePath,
+      headless: chromium.headless,
+      ignoreHTTPSErrors: true
     })
 
     const page = await browser.newPage()
