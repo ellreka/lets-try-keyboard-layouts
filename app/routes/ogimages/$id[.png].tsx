@@ -1,6 +1,6 @@
 import type { LoaderFunction } from '@remix-run/node'
 import { json } from '@remix-run/node'
-import chromium from 'chrome-aws-lambda'
+import chromium from '@shortjared/chrome-aws-lambda'
 
 const isDev = process.env.NODE_ENV === 'development'
 
