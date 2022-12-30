@@ -8,5 +8,5 @@ node_modules
 
 /app/styles/app.css
 /build
-/api
+/api/_build/
 .vercel

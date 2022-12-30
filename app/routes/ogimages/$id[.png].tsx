@@ -1,9 +1,8 @@
 import type { LoaderFunction } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import chromium from 'chrome-aws-lambda'
-import puppeteer from 'puppeteer-core'
 
-const isDev = !process.env.AWS_REGION
+const isDev = process.env.NODE_ENV === 'development'
 
 export const loader: LoaderFunction = async ({
   request
@@ -21,11 +20,11 @@ export const loader: LoaderFunction = async ({
 
   try {
     browser = await chromium.puppeteer.launch({
-      args: chromium.args,
-      defaultViewport: chromium.defaultViewport,
-      executablePath: await chromium.executablePath,
-      headless: chromium.headless,
-      ignoreHTTPSErrors: true
+      args: isDev ? [] : chromium.args,
+      channel: isDev ? 'chrome' : undefined,
+      executablePath: isDev ? undefined : await chromium.executablePath,
+      headless: isDev ? true : chromium.headless,
+      defaultViewport: { width: 1200, height: 630 }
     })
 
     const page = await browser.newPage()
