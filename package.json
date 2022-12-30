@@ -37,7 +37,7 @@
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.20",
     "prettier": "^2.8.1",
-    "puppeteer": "^19.4.1",
+    "puppeteer": "^10.1.0",
     "puppeteer-core": "^19.4.1",
     "recoil": "^0.7.6",
     "recoil-persist": "^4.2.0",

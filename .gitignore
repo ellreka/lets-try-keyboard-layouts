@@ -8,3 +8,4 @@ node_modules
 
 /app/styles/app.css
 /build
+/api
