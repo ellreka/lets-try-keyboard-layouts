@@ -1,5 +1,5 @@
 import { useRecoilState } from 'recoil'
-import { myKeyboardState, tryKeyboardState } from '~/atoms/selectKeyboardQuery'
+import { myKeyboardState, tryKeyboardState } from '~/atoms/state'
 import type { KeyboardKeys } from '~/type'
 import keyboard from '~/keyboard.json'
 

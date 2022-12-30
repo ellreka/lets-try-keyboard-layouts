@@ -1,6 +1,6 @@
 import { useRecoilValue } from 'recoil'
-import { pressedKeyState } from '~/atoms/inputTextQuery'
-import { tryKeyboardState } from '~/atoms/selectKeyboardQuery'
+import { pressedKeyState } from '~/atoms/state'
+import { tryKeyboardState } from '~/atoms/state'
 import keyboard from '~/keyboard.json'
 
 export const useKeyboard = () => {

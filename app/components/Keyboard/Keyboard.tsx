@@ -1,6 +1,5 @@
 import clsx from 'clsx'
 import type { FC } from 'react'
-import { useCallback } from 'react'
 import { useState } from 'react'
 import { memo } from 'react'
 import { useKeyboard } from '~/hooks/useKeyboard'

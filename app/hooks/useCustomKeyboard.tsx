@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useRecoilState } from 'recoil'
-import { customKeyboardState } from '~/atoms/keyboardQuery'
+import { customKeyboardState } from '~/atoms/state'
 
 export const useCustomKeyboard = (initialLayout: (string | string[])[][]) => {
   const [customKeyboard, setCustomKeyboard] =
