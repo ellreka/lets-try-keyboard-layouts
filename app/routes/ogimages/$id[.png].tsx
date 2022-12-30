@@ -26,7 +26,8 @@ export const loader: LoaderFunction = async ({
       channel: isDev ? 'chrome' : undefined,
       executablePath: isDev ? undefined : await chromium.executablePath,
       headless: isDev ? true : chromium.headless,
-      defaultViewport: { width: 1200, height: 630 }
+      defaultViewport: { width: 1200, height: 630 },
+      ignoreDefaultArgs: ['--disable-extensions']
     })
 
     const page = await browser.newPage()
