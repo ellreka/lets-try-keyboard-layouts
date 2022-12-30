@@ -2,6 +2,7 @@ import type { LoaderFunction, MetaFunction } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 import { useEffect, useState } from 'react'
 import { Keyboard } from '~/components/Keyboard/Keyboard'
+import { ShareModal } from '~/components/Modal/ShareModal'
 import { TextArea } from '~/components/TextArea/TextArea'
 import { useSelectKeyboard } from '~/hooks/useSelectKeyboard'
 
@@ -9,7 +10,8 @@ export const meta: MetaFunction<typeof loader> = ({ data, params }) => {
   console.log(data, params)
   return {
     title: data.title ?? 'no title',
-    description: 'This becomes the nice preview on search results.'
+    description: 'This becomes the nice preview on search results.',
+    image: ''
   }
 }
 
@@ -34,6 +36,10 @@ export default function Index() {
     handleSelectMyKeyboard,
     handleSelectTryKeyboard
   } = useSelectKeyboard()
+
+  const [isOpenModal, setIsOpenModal] = useState(false)
+
+  const handleCreateLayout = () => {}
 
   useEffect(() => {
     if (tryKeyboard === 'custom') {
@@ -87,7 +93,17 @@ export default function Index() {
         <div className="mt-10">
           <TextArea />
         </div>
+        <div className="mt-5 flex items-center justify-center">
+          <button className="btn btn-primary">Create original layout</button>
+        </div>
       </div>
+      <ShareModal
+        open={isOpenModal}
+        onClose={() => {
+          console.log('cose')
+          setIsOpenModal(false)
+        }}
+      />
     </div>
   )
 }
