@@ -27,11 +27,12 @@ export const loader: LoaderFunction = async ({
       headless: isDev ? true : chromium.headless
     })
 
-    const page = await browser.newPage()
-
-    page.setViewportSize({
-      width: 1200,
-      height: 630
+    const page = await browser.newPage({
+      viewport: {
+        width: 1200,
+        height: 630
+      },
+      deviceScaleFactor: 1
     })
 
     const templateUrl = request.url.replace(`.png`, '')

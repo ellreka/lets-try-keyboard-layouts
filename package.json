@@ -8,7 +8,7 @@
     "build": "pnpm run build:css && remix build",
     "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
     "dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css",
-    "dev:remix": "remix dev",
+    "dev:remix": "RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED=false remix dev",
     "dev": "run-p \"dev:*\"",
     "type-check": "tsc --noEmit"
   },

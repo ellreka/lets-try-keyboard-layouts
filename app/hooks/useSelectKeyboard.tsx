@@ -14,12 +14,11 @@ const keyboardList = Object.entries(keyboard).map(([key, value]) => ({
   name: value.name
 }))
 
-export const useSelectKeyboard = () => {
+export const useSelectKeyboard = (isExistCustomKeyboard: boolean = false) => {
   const [myKeyboard, setMyKeyboard] = useRecoilState(myKeyboardState)
   const [tryKeyboard, setTryKeyboard] = useRecoilState(tryKeyboardState)
   const [isCustomizing, setIsCustomizing] = useRecoilState(isCustomizingState)
   const customKeyboard = useRecoilValue(customKeyboardState)
-  console.log(customKeyboard)
   const myKeyboardList = keyboardList
   const tryKeyboardList = customKeyboard
     ? [...keyboardList, { key: 'custom', name: 'Custom' }]
@@ -31,6 +30,12 @@ export const useSelectKeyboard = () => {
       setTryKeyboard('custom')
     }
   }, [isCustomizing])
+
+  useEffect(() => {
+    if (isExistCustomKeyboard) {
+      setIsCustomizing(true)
+    }
+  }, [isExistCustomKeyboard])
 
   const handleSelectMyKeyboard = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target

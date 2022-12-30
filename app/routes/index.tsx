@@ -6,6 +6,7 @@ import { ShareModal } from '~/components/Modal/ShareModal'
 import { TextArea } from '~/components/TextArea/TextArea'
 import { useCustomizing } from '~/hooks/useCustomizing'
 import { useSelectKeyboard } from '~/hooks/useSelectKeyboard'
+import { decodeLayoutData } from '~/utils/decodeLayoutData'
 
 export const meta: MetaFunction<typeof loader> = ({ data, params }) => {
   const { imageUrl } = data
@@ -24,17 +25,22 @@ export const meta: MetaFunction<typeof loader> = ({ data, params }) => {
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url)
   const author = url.searchParams.get('author')
-  const imageUrl = `${url.origin}/ogimages/${author}.png`
+  const q = url.searchParams.get('q')
+  const layout = q ? decodeLayoutData(q) : null
+  const imageUrl = q
+    ? `${url.origin}/ogimages/${encodeURIComponent(q)}.png`
+    : null
   return {
     author,
+    layout,
     imageUrl
   }
 }
 
 export default function Index() {
   const data = useLoaderData()
-  console.log(data)
-  const { isCustomizing, handleCreateOriginalKeyboard } = useCustomizing()
+  const { isCustomizing, handleCreateOriginalKeyboard, handleShare } =
+    useCustomizing(data.layout)
   const {
     myKeyboardList,
     tryKeyboardList,
@@ -42,7 +48,7 @@ export default function Index() {
     tryKeyboard,
     handleSelectMyKeyboard,
     handleSelectTryKeyboard
-  } = useSelectKeyboard()
+  } = useSelectKeyboard(data.layout != null)
 
   const [isOpenModal, setIsOpenModal] = useState(false)
 
@@ -96,7 +102,7 @@ export default function Index() {
               <button
                 className="btn btn-primary gap-2"
                 onClick={() => {
-                  setIsOpenModal(true)
+                  handleShare()
                 }}
               >
                 Share
