@@ -9,20 +9,22 @@
     "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
     "dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css",
     "dev:remix": "remix watch",
-    "dev:wrangler": "cross-env NODE_ENV=development wrangler pages dev ./public --local",
+    "dev:wrangler": "cross-env NODE_ENV=development wrangler dev --local",
     "dev": "run-p \"dev:*\"",
     "type-check": "tsc --noEmit",
-    "deploy": "cross-env NODE_ENV=production wrangler pages publish ./public"
+    "deploy": "cross-env NODE_ENV=production wrangler publish ./public"
   },
   "dependencies": {
+    "@cloudflare/kv-asset-handler": "^0.3.0",
     "@remix-run/cloudflare": "^1.9.0",
-    "@remix-run/cloudflare-pages": "^1.9.0",
+    "@remix-run/cloudflare-workers": "^1.9.0",
     "@remix-run/react": "^1.9.0",
     "cross-env": "^7.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "@cloudflare/puppeteer": "0.0.0-alpha.1",
     "@cloudflare/workers-types": "^3.18.0",
     "@mui/base": "5.0.0-alpha.112",
     "@remix-run/dev": "^1.9.0",

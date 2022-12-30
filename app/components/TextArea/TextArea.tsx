@@ -18,7 +18,7 @@ export const TextArea: FC<Props> = () => {
     <div className="w-full flex justify-center items-center gap-2">
       <textarea
         ref={ref}
-        placeholder="Let's try Keyboard Layout!"
+        placeholder="Let's try Keyboard Layouts!"
         value={inputText}
         onKeyDown={handleKeyDown}
         onKeyUp={handleKeyUp}

@@ -1,11 +1,11 @@
 import type React from 'react'
 import { useCallback, useState } from 'react'
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
-import { pressedKeyState } from '~/atoms/inputTextQuery'
-import { myKeyboardState, tryKeyboardState } from '~/atoms/selectKeyboardQuery'
+import { pressedKeyState } from '~/atoms/state'
+import { myKeyboardState, tryKeyboardState } from '~/atoms/state'
 import { convertKey } from '~/utils/convertKey'
 import keyboard from '~/keyboard.json'
-import { customKeyboardState } from '~/atoms/keyboardQuery'
+import { customKeyboardState } from '~/atoms/state'
 
 export const useInputText = () => {
   const [pressedKey, setPressedKey] = useRecoilState(pressedKeyState)
