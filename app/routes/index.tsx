@@ -1,9 +1,30 @@
+import type { LoaderFunction, MetaFunction } from '@remix-run/cloudflare'
+import { useLoaderData } from '@remix-run/react'
 import { useEffect, useState } from 'react'
 import { Keyboard } from '~/components/Keyboard/Keyboard'
 import { TextArea } from '~/components/TextArea/TextArea'
 import { useSelectKeyboard } from '~/hooks/useSelectKeyboard'
 
+export const meta: MetaFunction<typeof loader> = ({ data, params }) => {
+  console.log(data, params)
+  return {
+    title: data.title ?? 'no title',
+    description: 'This becomes the nice preview on search results.'
+  }
+}
+
+export const loader: LoaderFunction = async ({ request }) => {
+  const url = new URL(request.url)
+  const title = url.searchParams.get('title')
+  console.log(url)
+  return {
+    title
+  }
+}
+
 export default function Index() {
+  const data = useLoaderData()
+  console.log(data)
   const [isEdit, setIsEdit] = useState(false)
   const {
     myKeyboardList,
