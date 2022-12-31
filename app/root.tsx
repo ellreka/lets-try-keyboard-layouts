@@ -8,6 +8,7 @@ import {
   ScrollRestoration
 } from '@remix-run/react'
 import { RecoilRoot } from 'recoil'
+import { siteConfig } from '~/siteConfig'
 import styles from './styles/app.css'
 
 export function links() {
@@ -16,8 +17,16 @@ export function links() {
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
-  title: "Let's Try Keyboard Layouts!",
-  viewport: 'width=device-width,initial-scale=1'
+  viewport: 'width=device-width,initial-scale=1',
+  title: siteConfig.title,
+  description: siteConfig.description,
+  'og:title': siteConfig.title,
+  'og:description': siteConfig.description,
+  'og:url': siteConfig.url,
+  'og:site_name': siteConfig.title,
+  'twitter:card': 'summary_large_image',
+  'twitter:creator': '@ellreka',
+  'twitter:site': '@ellreka'
 })
 
 export default function App() {

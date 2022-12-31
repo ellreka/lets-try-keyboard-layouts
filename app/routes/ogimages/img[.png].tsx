@@ -35,7 +35,7 @@ export const loader: LoaderFunction = async ({
       deviceScaleFactor: 1
     })
 
-    const templateUrl = request.url.replace(`.png`, '')
+    const templateUrl = request.url.replace(`img.png`, 'template')
     await page.goto(templateUrl)
 
     screenshot = await page.screenshot({ type: 'png' })

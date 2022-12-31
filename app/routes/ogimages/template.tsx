@@ -1,18 +1,19 @@
 import type { LoaderFunction } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { KeyboardOgp } from '~/components/Keyboard/Keyboard.ogp'
-import keyboard from '~/keyboard.json'
 import { KeyboardLayout } from '~/type'
-import { decodeLayoutData } from '~/utils/decodeLayoutData'
+import { generateLayoutData } from '~/utils/generateLayoutUrl'
 
 type LoaderData = {
   layout: KeyboardLayout | null
 }
 
-export const loader: LoaderFunction = async ({ params }) => {
-  const layoutString = params.id
-  console.log(layoutString)
-  const layout = layoutString ? decodeLayoutData(layoutString) : null
+export const loader: LoaderFunction = async ({ params, request }) => {
+  const url = new URL(request.url)
+  const layoutString = url.searchParams.get('q')
+  const layout = layoutString
+    ? generateLayoutData(encodeURIComponent(layoutString))
+    : null
   return {
     layout
   }
@@ -20,6 +21,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 
 export default function OgImage() {
   const { layout } = useLoaderData<LoaderData>()
+  console.log(layout)
 
   return (
     <div id="ogimage" className="w-[1200px] h-[630px] bg-neutral relative">

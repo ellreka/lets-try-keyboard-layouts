@@ -6,32 +6,23 @@ import { ShareModal } from '~/components/Modal/ShareModal'
 import { TextArea } from '~/components/TextArea/TextArea'
 import { useCustomizing } from '~/hooks/useCustomizing'
 import { useSelectKeyboard } from '~/hooks/useSelectKeyboard'
-import { decodeLayoutData } from '~/utils/decodeLayoutData'
+import { generateLayoutData } from '~/utils/generateLayoutUrl'
 
 export const meta: MetaFunction<typeof loader> = ({ data, params }) => {
   const { imageUrl } = data
   return {
-    'og:url': '',
-    'og:title': `aaa`,
-    'og:description': 'description',
-    'og:image': imageUrl,
-    'og:site_name': '',
-    'twitter:card': imageUrl ? 'summary_large_image' : 'summary',
-    'twitter:creator': '@ellreka',
-    'twitter:site': '@ellreka'
+    'og:image': imageUrl
   }
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url)
-  const author = url.searchParams.get('author')
   const q = url.searchParams.get('q')
-  const layout = q ? decodeLayoutData(q) : null
+  const layout = q ? generateLayoutData(encodeURIComponent(q)) : null
   const imageUrl = q
-    ? `${url.origin}/ogimages/${encodeURIComponent(q)}.png`
-    : null
+    ? `${url.origin}/ogimages/img.png?q=${encodeURIComponent(q)}`
+    : `${url.origin}/ogimages/img.png`
   return {
-    author,
     layout,
     imageUrl
   }
@@ -39,8 +30,13 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 export default function Index() {
   const data = useLoaderData()
-  const { isCustomizing, handleCreateOriginalKeyboard, handleShare } =
-    useCustomizing(data.layout)
+  console.log(data.layout)
+  const {
+    isCustomizing,
+    handleCreateOriginalKeyboard,
+    handleShare,
+    layoutQueryString
+  } = useCustomizing(data.layout)
   const {
     myKeyboardList,
     tryKeyboardList,
@@ -102,6 +98,7 @@ export default function Index() {
               <button
                 className="btn btn-primary gap-2"
                 onClick={() => {
+                  setIsOpenModal(true)
                   handleShare()
                 }}
               >
@@ -135,9 +132,9 @@ export default function Index() {
       <ShareModal
         open={isOpenModal}
         onClose={() => {
-          console.log('cose')
           setIsOpenModal(false)
         }}
+        layoutQueryString={layoutQueryString}
       />
     </div>
   )
