@@ -25,13 +25,13 @@ export default function OgImage() {
 
   return (
     <div id="ogimage" className="w-[1200px] h-[630px] bg-neutral relative">
+      <h1 className="text-[50px] whitespace-nowrap font-bold text-black absolute top-10 left-1/2 -translate-x-1/2">
+        Let's Try Keyboard Layouts!
+      </h1>
       <div className="flex flex-col justify-center items-center gap-10 w-full h-full">
-        <div className="scale-150">
+        <div className="scale-[1.6] w-[680px] mt-[70px]">
           <KeyboardOgp layout={layout ?? []} />
         </div>
-        <h1 className="text-3xl font-bold text-black absolute bottom-5 right-5">
-          Let's Try Keyboard Layouts!
-        </h1>
       </div>
     </div>
   )

@@ -12,12 +12,19 @@ import { siteConfig } from '~/siteConfig'
 import styles from './styles/app.css'
 
 export function links() {
-  return [{ rel: 'stylesheet', href: styles }]
+  return [
+    {
+      rel: 'icon',
+      href: '/favicon.png',
+      type: 'image/png'
+    },
+    { rel: 'stylesheet', href: styles }
+  ]
 }
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
-  viewport: 'width=device-width,initial-scale=1',
+  viewport: 'width=768',
   title: siteConfig.title,
   description: siteConfig.description,
   'og:title': siteConfig.title,

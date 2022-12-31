@@ -58,12 +58,12 @@ export default function Index() {
 
   return (
     <div className="bg-base h-screen flex flex-col">
-      <header className="w-full flex items-center justify-center py-10">
+      <header className="flex mx-auto items-center justify-center py-10">
         <h1 className="text-3xl font-bold text-black">
           Let's Try Keyboard Layouts!
         </h1>
       </header>
-      <div className="max-w-3xl mx-auto bg-neutral h-full p-10">
+      <div className="mx-auto w-3xl bg-neutral h-full p-10">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <p className="font-bold">Try</p>
@@ -94,7 +94,7 @@ export default function Index() {
             </select>
           </div>
         </div>
-        <div className="mt-10">
+        <div className="mt-10 w-[670px]">
           <Keyboard key={tryKeyboard} isEdit={isCustomizing} />
         </div>
         <div className="mt-10">
