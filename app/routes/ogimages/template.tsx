@@ -3,6 +3,7 @@ import { useLoaderData } from '@remix-run/react'
 import { KeyboardOgp } from '~/components/Keyboard/Keyboard.ogp'
 import { KeyboardLayout } from '~/type'
 import { generateLayoutData } from '~/utils/generateLayoutUrl'
+import keyboard from '~/keyboard.json'
 
 type LoaderData = {
   layout: KeyboardLayout | null
@@ -13,7 +14,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
   const layoutString = url.searchParams.get('q')
   const layout = layoutString
     ? generateLayoutData(encodeURIComponent(layoutString))
-    : null
+    : keyboard.dvorak.layout
   return {
     layout
   }
@@ -21,7 +22,6 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 
 export default function OgImage() {
   const { layout } = useLoaderData<LoaderData>()
-  console.log(layout)
 
   return (
     <div id="ogimage" className="w-[1200px] h-[630px] bg-neutral relative">

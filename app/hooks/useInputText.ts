@@ -20,7 +20,6 @@ export const useInputText = () => {
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       if (!readonly) {
         const { value } = e.target
-        console.log(value)
         setInputText(value)
       }
     },

@@ -27,8 +27,6 @@ export const useKeyboard = () => {
   ) => {
     if (!customKeyboard) return
     let newCustomKeyboard = JSON.parse(JSON.stringify(customKeyboard))
-    console.log(position, key, shiftLayerKey)
-    console.log(newCustomKeyboard[position.row][position.col])
     newCustomKeyboard[position.row][position.col] = shiftLayerKey
       ? [key, shiftLayerKey]
       : key

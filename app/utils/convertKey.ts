@@ -15,7 +15,6 @@ export const convertKey = (
 ] => {
   const myKeyboardLayout = myKeyboard
   const tryKeyboardLayout = tryKeyboard
-  console.log(isShiftPressed)
   const toLowerKey = key.toLowerCase()
   let rowIndex = null
   let colIndex = null
@@ -54,7 +53,7 @@ export const convertKey = (
   if (found && rowIndex !== null && colIndex !== null) {
     return [
       isShiftPressed
-        ? tryKeyboardLayout[rowIndex][colIndex][layerIndex].toUpperCase() ?? ''
+        ? tryKeyboardLayout[rowIndex][colIndex][layerIndex]?.toUpperCase() ?? ''
         : tryKeyboardLayout[rowIndex][colIndex][layerIndex] ?? '',
       { row: rowIndex, col: colIndex, layer: layerIndex }
     ]

@@ -72,7 +72,6 @@ export const ShareModal: FC<Props> = ({ open, onClose, layoutQueryString }) => {
             src={imageUrl}
             alt=""
             onLoad={(e) => {
-              console.log('object')
               setIsLoaded(true)
             }}
           />

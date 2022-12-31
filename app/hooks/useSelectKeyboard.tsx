@@ -40,7 +40,6 @@ export const useSelectKeyboard = (isExistCustomKeyboard: boolean = false) => {
 
   const handleSelectMyKeyboard = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target
-    console.log(value)
     setMyKeyboard(value as KeyboardKeys)
   }
 
