@@ -30,6 +30,7 @@ export const meta: MetaFunction = () => ({
   'og:title': siteConfig.title,
   'og:description': siteConfig.description,
   'og:url': siteConfig.url,
+  'og:image': `${siteConfig.url}/ogp.png`,
   'og:site_name': siteConfig.title,
   'twitter:card': 'summary_large_image',
   'twitter:creator': '@ellreka',

@@ -21,7 +21,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   const layout = q ? generateLayoutData(encodeURIComponent(q)) : null
   const imageUrl = q
     ? `${url.origin}/ogimages/img.png?q=${encodeURIComponent(q)}`
-    : `${url.origin}/ogimages/img.png`
+    : `${url.origin}/ogp.png`
   return {
     layout,
     imageUrl
