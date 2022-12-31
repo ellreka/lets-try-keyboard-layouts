@@ -2,6 +2,7 @@ import type { KeyboardLayout } from '~/type'
 
 export const convertKey = (
   key: string,
+  isShiftPressed: boolean,
   myKeyboard: KeyboardLayout,
   tryKeyboard: KeyboardLayout
 ): [
@@ -14,7 +15,7 @@ export const convertKey = (
 ] => {
   const myKeyboardLayout = myKeyboard
   const tryKeyboardLayout = tryKeyboard
-
+  console.log(isShiftPressed)
   const toLowerKey = key.toLowerCase()
   let rowIndex = null
   let colIndex = null
@@ -26,6 +27,11 @@ export const convertKey = (
         if (myKeyboardLayout[i][j] === toLowerKey) {
           rowIndex = i
           colIndex = j
+          layerIndex = isShiftPressed
+            ? Array.isArray(tryKeyboardLayout[rowIndex][colIndex])
+              ? 1
+              : 0
+            : 0
           found = true
           break
         }
@@ -47,7 +53,9 @@ export const convertKey = (
   }
   if (found && rowIndex !== null && colIndex !== null) {
     return [
-      tryKeyboardLayout[rowIndex][colIndex][layerIndex],
+      isShiftPressed
+        ? tryKeyboardLayout[rowIndex][colIndex][layerIndex].toUpperCase() ?? ''
+        : tryKeyboardLayout[rowIndex][colIndex][layerIndex] ?? '',
       { row: rowIndex, col: colIndex, layer: layerIndex }
     ]
   }

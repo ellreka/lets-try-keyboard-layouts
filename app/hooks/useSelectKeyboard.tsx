@@ -33,7 +33,8 @@ export const useSelectKeyboard = (isExistCustomKeyboard: boolean = false) => {
 
   useEffect(() => {
     if (isExistCustomKeyboard) {
-      setIsCustomizing(true)
+      // setIsCustomizing(true)
+      setTryKeyboard('custom')
     }
   }, [isExistCustomKeyboard])
 

@@ -6,6 +6,47 @@ type Props = {
   handleClose: () => void
 }
 
+const alphabet = [...Array(26)].map((_, i) => String.fromCharCode(97 + i))
+const number = [...Array(10)].map((_, i) => String.fromCharCode(48 + i))
+const symbol = [
+  '!',
+  '@',
+  '#',
+  '$',
+  '%',
+  '^',
+  '&',
+  '*',
+  '(',
+  ')',
+  '_',
+  '+',
+  '{',
+  '}',
+  '|',
+  ':',
+  '"',
+  '<',
+  '>',
+  '?',
+  '~',
+  '`',
+  '-',
+  '=',
+  '[',
+  ']',
+  '\\',
+  ';',
+  "'",
+  ',',
+  '.',
+  '/'
+]
+
+const mainKeys = ['', ...alphabet, ...number, ...symbol]
+
+const shiftLayerKeys = ['', ...symbol]
+
 export const CustomKeyPopper: FC<Props> = ({
   selectedKey,
   setSelectedKey,
@@ -45,9 +86,9 @@ export const CustomKeyPopper: FC<Props> = ({
           name="custom-key"
           className="select select-bordered select-sm w-full max-w-xs text-md"
         >
-          {[...Array(26)].map((_, i) => (
-            <option key={i} value={String.fromCharCode(97 + i)}>
-              {String.fromCharCode(97 + i).toUpperCase()}
+          {mainKeys.map((k) => (
+            <option key={k} value={k}>
+              {k.toUpperCase()}
             </option>
           ))}
         </select>
@@ -62,10 +103,9 @@ export const CustomKeyPopper: FC<Props> = ({
           name="custom-shift-layer"
           className="select select-bordered select-sm w-full max-w-xs text-md"
         >
-          <option value="" disabled></option>
-          {[...Array(26)].map((_, i) => (
-            <option key={i} value={String.fromCharCode(97 + i)}>
-              {String.fromCharCode(97 + i).toUpperCase()}
+          {shiftLayerKeys.map((k) => (
+            <option key={k} value={k}>
+              {k.toUpperCase()}
             </option>
           ))}
         </select>

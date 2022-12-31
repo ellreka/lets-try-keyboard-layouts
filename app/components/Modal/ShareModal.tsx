@@ -27,7 +27,7 @@ const BackdropUnstyled = forwardRef<
 BackdropUnstyled.displayName = 'BackdropUnstyled'
 
 export const ShareModal: FC<Props> = ({ open, onClose, layoutQueryString }) => {
-  const imageUrl = `/ogimages/${layoutQueryString}.png`
+  const imageUrl = `/ogimages/img.png?q=${layoutQueryString}`
   const shareUrl = `${siteConfig.url}/?q=${layoutQueryString}`
   const tweetUrl = `https://twitter.com/intent/tweet?text=${
     siteConfig.text
@@ -36,6 +36,8 @@ export const ShareModal: FC<Props> = ({ open, onClose, layoutQueryString }) => {
   )}`
 
   const [isCopied, setIsCopied] = useState(false)
+
+  const [isLoaded, setIsLoaded] = useState(false)
 
   const handleCopy = () => {
     navigator.clipboard.writeText(shareUrl)
@@ -62,11 +64,43 @@ export const ShareModal: FC<Props> = ({ open, onClose, layoutQueryString }) => {
       }}
     >
       <div className="bg-white rounded-md flex-col flex items-center justify-center max-w-xl w-full p-10 mx-10 h-[50%]">
-        <img
-          className="hover:shadow-black hover:shadow-[inset_0_0_10px_0px]"
-          src={imageUrl}
-          alt=""
-        />
+        <div className="relative bg-base-200 w-full h-[260px]">
+          <img
+            className={clsx(
+              'hover:shadow-black hover:shadow-[inset_0_0_10px_0px]'
+            )}
+            src={imageUrl}
+            alt=""
+            onLoad={(e) => {
+              console.log('object')
+              setIsLoaded(true)
+            }}
+          />
+          {!isLoaded ? (
+            <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+              <svg
+                className="animate-spin -ml-1 mr-3 h-10 w-10 text-black"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+            </div>
+          ) : null}
+        </div>
         <div className="form-control w-full mt-10">
           <div className="input-group">
             <input

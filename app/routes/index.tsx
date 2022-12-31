@@ -1,6 +1,6 @@
-import { useLoaderData } from '@remix-run/react'
+import { useLoaderData, useLocation, useSearchParams } from '@remix-run/react'
 import type { MetaFunction, LoaderFunction } from '@remix-run/node'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Keyboard } from '~/components/Keyboard/Keyboard'
 import { ShareModal } from '~/components/Modal/ShareModal'
 import { TextArea } from '~/components/TextArea/TextArea'
@@ -47,6 +47,14 @@ export default function Index() {
   } = useSelectKeyboard(data.layout != null)
 
   const [isOpenModal, setIsOpenModal] = useState(false)
+
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  useEffect(() => {
+    if (searchParams.get('q') != null) {
+      setSearchParams({})
+    }
+  }, [])
 
   return (
     <div className="bg-base h-screen flex flex-col">
@@ -130,6 +138,7 @@ export default function Index() {
         </div>
       </div>
       <ShareModal
+        key={layoutQueryString}
         open={isOpenModal}
         onClose={() => {
           setIsOpenModal(false)

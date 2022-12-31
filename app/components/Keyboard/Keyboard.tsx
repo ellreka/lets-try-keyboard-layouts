@@ -19,9 +19,7 @@ export const Keyboard: FC<Props> = memo(({ isEdit = false }) => {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (isEdit) {
-      ref.current?.click()
-    }
+    ref.current?.click()
   }, [isEdit])
 
   const handleClickKeySwitch = (e: React.MouseEvent<HTMLDivElement>) => {

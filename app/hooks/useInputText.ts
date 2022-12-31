@@ -37,18 +37,16 @@ export const useInputText = () => {
           setReadonly(true)
           const [convertedKey, position] = convertKey(
             key,
+            shiftKey,
             keyboard[myKeyboard].layout,
             tryKeyboard === 'custom' && customKeyboard != null
               ? customKeyboard
               : // @ts-ignore
                 keyboard[tryKeyboard].layout
           )
-          console.log({ convertedKey, key })
+          console.log({ convertedKey, key, position })
           setPressedKey([convertedKey, position])
-          setInputText(
-            (prev) =>
-              prev + (shiftKey ? convertedKey.toUpperCase() : convertedKey)
-          )
+          setInputText((prev) => prev + convertedKey)
         }
       } else if (key === 'Backspace' || key === 'Delete' || key === 'Enter') {
         setReadonly(false)
