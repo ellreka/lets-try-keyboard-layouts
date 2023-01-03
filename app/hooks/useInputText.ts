@@ -38,10 +38,9 @@ export const useInputText = () => {
             key,
             shiftKey,
             keyboard[myKeyboard].layout,
-            tryKeyboard === 'custom' && customKeyboard != null
-              ? customKeyboard
-              : // @ts-ignore
-                keyboard[tryKeyboard].layout
+            tryKeyboard === 'custom'
+              ? customKeyboard ?? keyboard['qwerty'].layout
+              : keyboard[tryKeyboard].layout
           )
           console.log({ convertedKey, key, position })
           setPressedKey([convertedKey, position])

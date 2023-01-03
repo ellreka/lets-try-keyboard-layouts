@@ -6,7 +6,7 @@ import { generateLayoutData } from '~/utils/generateLayoutUrl'
 import keyboard from '~/keyboard.json'
 
 type LoaderData = {
-  layout: KeyboardLayout | null
+  layout: KeyboardLayout
 }
 
 export const loader: LoaderFunction = async ({ params, request }) => {
@@ -30,7 +30,7 @@ export default function OgImage() {
       </h1>
       <div className="flex flex-col justify-center items-center gap-10 w-full h-full">
         <div className="scale-[1.6] w-[680px] mt-[70px]">
-          <KeyboardOgp layout={layout ?? []} />
+          <KeyboardOgp layout={layout} />
         </div>
       </div>
     </div>

@@ -63,8 +63,8 @@ export const ShareModal: FC<Props> = ({ open, onClose, layoutQueryString }) => {
         backdrop: BackdropUnstyled
       }}
     >
-      <div className="bg-white rounded-md flex-col flex items-center justify-center max-w-xl w-full p-10 mx-10 h-[50%]">
-        <div className="relative bg-base-200 w-full h-[260px]">
+      <div className="bg-white rounded-md flex-col flex max-h-[500px] h-[80%] items-center justify-center max-w-xl w-full p-10 mx-10">
+        <div className="relative bg-base-200 w-full">
           <img
             className={clsx(
               'hover:shadow-black hover:shadow-[inset_0_0_10px_0px]'
